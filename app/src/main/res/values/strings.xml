@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">DestinationApp</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_ticket">Ticket</string>
+    <string name="menu_profile">Profile</string>
+    <string name="price">Rp%d</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="minus_symbol">—</string>
+    <string name="plus_symbol">＋</string>
+    <string name="add_to_cart">Beli Tiket : %d Pts</string>
+    <string name="total_order">Total pesanan : %d Pts</string>
+    <string name="back">Back</string>
+    <string name="share_message">Hey, I have redeem %1$d rewards in Dicoding with total %2$d Points. Do you want too?</string>
+
+    <string name="name">Antonius Krisargo Wisnuaji Nugroho</string>
+    <string name="email">antonius.kri2003@mail.ugm.ac.id</string>
+    <string name="desc"></string>
+
+    <string name="section_discount">Diskon Menarik Hari Ini</string>
+    <string name="placeholder_search">Cari Destinasi Pilihanmu</string>
+    <string name="section_destination">Pesan Tiket Sekarang</string>
+    <string name="section_category">Mau Kemana Hari ini?</string>
+    <string name="category_all">All</string>
+    <string name="category_jogja">Jogja</string>
+    <string name="category_bandung">Bandung</string>
+    <string name="category_bali">Bali</string>
+    <string name="category_lombok">Lombok</string>
+    <string name="category_jakarta">Jakarta</string>
+    <string name="category_malang">Malang</string>
+    <string name="category_surabaya">Surabaya</string>
+    <string name="category_semarang">Semarang</string>
+
+
+</resources>
