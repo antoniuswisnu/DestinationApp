@@ -7,15 +7,13 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
     <string name="minus_symbol">—</string>
     <string name="plus_symbol">＋</string>
-    <string name="add_to_cart">Beli Tiket : %d Pts</string>
-    <string name="total_order">Total pesanan : %d Pts</string>
+    <string name="add_to_cart">Beli Tiket : Rp%d</string>
+    <string name="total_order">Total pesanan : Rp%d</string>
     <string name="back">Back</string>
-    <string name="share_message">Hey, I have redeem %1$d rewards in Dicoding with total %2$d Points. Do you want too?</string>
-
+    <string name="share_message">Hey, Aku ingin memesan tiket ini segera ya!</string>
     <string name="name">Antonius Krisargo Wisnuaji Nugroho</string>
     <string name="email">antonius.kri2003@mail.ugm.ac.id</string>
-    <string name="desc"></string>
-
+    <string name="button_navigation">Explore</string>
     <string name="section_discount">Diskon Menarik Hari Ini</string>
     <string name="placeholder_search">Cari Destinasi Pilihanmu</string>
     <string name="section_destination">Pesan Tiket Sekarang</string>
@@ -29,6 +27,8 @@
     <string name="category_malang">Malang</string>
     <string name="category_surabaya">Surabaya</string>
     <string name="category_semarang">Semarang</string>
-
+    <string name="content_destination">Cari destinasi liburanmu sekarang juga! Dan dapatkan harga tiket termurah yang pernah anda jumpai! Segera pesan melalui tombol dibawah ini!</string>
+    <string name="scroll_to_top">Scroll to Top</string>
+    <string name="search_destination">Cari Destinasimu</string>
 
 </resources>

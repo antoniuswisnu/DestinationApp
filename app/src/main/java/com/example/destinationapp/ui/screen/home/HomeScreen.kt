@@ -1,7 +1,6 @@
 package com.example.destinationapp.ui.screen.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,64 +8,36 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.destinationapp.R
 import com.example.destinationapp.data.Discount
 import com.example.destinationapp.data.dummyCategory
 import com.example.destinationapp.data.dummyDiscount
-import com.example.destinationapp.di.Injection
-import com.example.destinationapp.model.OrderDestination
-import com.example.destinationapp.ui.ViewModelFactory
-import com.example.destinationapp.ui.common.UiState
 import com.example.destinationapp.ui.components.CategoryItem
-import com.example.destinationapp.ui.components.DestinationItem
 import com.example.destinationapp.ui.components.DiscountItem
 import com.example.destinationapp.ui.components.Search
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = viewModel(
-        factory = ViewModelFactory(Injection.provideRepository())
-    ),
-    navigateToDetail: (Long) -> Unit,
-) {
-    viewModel.uiState.collectAsState(initial = UiState.Loading).value.let { uiState ->
-        when (uiState) {
-            is UiState.Loading -> {
-                viewModel.getAllDestinations()
-            }
-            is UiState.Success -> {
-                HomeContent(
-                    orderDestination = uiState.data,
-                    modifier = modifier,
-                    navigateToDetail = navigateToDetail,
-                )
-            }
-            is UiState.Error -> {}
-        }
-    }
-}
-
-@Composable
-fun HomeContent(
-    orderDestination: List<OrderDestination>,
-    modifier: Modifier = Modifier,
-    navigateToDetail: (Long) -> Unit,
+    navController: NavController
 ) {
     Column {
         Banner()
@@ -75,25 +46,26 @@ fun HomeContent(
         SectionText(stringResource(R.string.section_discount))
         DiscountRow(dummyDiscount)
         SectionText(stringResource(R.string.section_destination))
-        LazyColumn(
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = modifier
-        ) {
-            items(orderDestination) { data ->
-                DestinationItem(
-                    image = data.destination.image,
-                    title = data.destination.title,
-                    price = data.destination.price,
-                    description = data.destination.description,
-                    modifier = Modifier.clickable {
-                        navigateToDetail(data.destination.id)
-                    }
+        ContentText(stringResource(R.string.content_destination))
+        Button(
+            onClick = {
+                navController.navigate("destination")
+            },
+            content = {
+                Text(
+                    text = stringResource(R.string.button_navigation),
+                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontWeight = FontWeight.Normal
+                    ),
+                    modifier = modifier
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
                 )
-            }
-        }
+            },
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Blue, contentColor = Color.White),
+            modifier = Modifier.padding(horizontal = 16.dp),
+        )
     }
-
 }
 
 @Composable
@@ -104,12 +76,14 @@ fun Banner(
         Image(
             painter = painterResource(R.drawable.banner),
             contentDescription = "Banner Image",
-            contentScale = ContentScale.FillWidth,
+            contentScale = ContentScale.FillBounds,
             modifier = Modifier
-                .height(160.dp)
+                .height(170.dp)
                 .fillMaxWidth()
+                .padding(bottom = 16.dp)
         )
         Search()
+
     }
 }
 
@@ -119,7 +93,6 @@ fun CategoryRow(
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp),
         modifier = modifier.padding(16.dp)
     ) {
         items(dummyCategory, key = { it.textCategory }) { category ->
@@ -139,7 +112,24 @@ fun SectionText(
             fontWeight = FontWeight.ExtraBold
         ),
         modifier = modifier
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(horizontal = 16.dp, vertical = 2.dp)
+    )
+}
+
+@Composable
+fun ContentText(
+    title: String,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = title,
+        fontSize = 14.sp,
+        style = MaterialTheme.typography.headlineSmall.copy(
+            fontWeight = FontWeight.Light
+
+        ),
+        modifier = modifier
+            .padding(horizontal = 16.dp, vertical = 2.dp)
     )
 }
 
@@ -158,12 +148,10 @@ fun DiscountRow(
         }
     }
 }
-
-
 @Composable
 @Preview(showBackground = true)
 fun HomeScreenPreview() {
     HomeScreen(
-        navigateToDetail = {}
+        navController = NavController(LocalContext.current)
     )
 }

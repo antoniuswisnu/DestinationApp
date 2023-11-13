@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +25,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.destinationapp.R
 import com.example.destinationapp.ui.theme.DestinationAppTheme
-import com.example.destinationapp.ui.theme.Shapes
 
 @Composable
 fun DestinationItem(
@@ -88,7 +85,7 @@ fun DestinationItem(
                         .padding(end = 16.dp, top = 8.dp, bottom = 8.dp)
                         .align(Alignment.End)
                     ,
-                    color = MaterialTheme.colorScheme.secondary
+                    color = Color(0xFFFFAB40)
                 )
             }
         }

@@ -55,7 +55,6 @@ fun CategoryItemPreview() {
                 R.drawable.jogja,
                 R.string.category_jogja,
             ),
-            modifier = Modifier.padding(horizontal = 8.dp)
         )
     }
 }

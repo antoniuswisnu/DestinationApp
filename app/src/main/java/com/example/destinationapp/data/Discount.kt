@@ -14,5 +14,3 @@ val dummyDiscount = listOf(
     Discount(R.drawable.image8, "Raja Ampat", "Rp 200.000"),
     Discount(R.drawable.image7, "Borobudur", "Rp 130.000"),
 )
-
-val dummyBestSellerDiscount = dummyDiscount.shuffled()

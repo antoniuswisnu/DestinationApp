@@ -1,5 +1,6 @@
 package com.example.destinationapp.data
 
+import com.example.destinationapp.model.Destination
 import com.example.destinationapp.model.FakeDestinationDataSource
 import com.example.destinationapp.model.OrderDestination
 import kotlinx.coroutines.flow.Flow
@@ -20,6 +21,10 @@ class DestinationRepository {
 
     fun getAllDestinations(): Flow<List<OrderDestination>> {
         return flowOf(orderDestinations)
+    }
+
+    fun getAllDestinationSearch(): List<Destination> {
+        return FakeDestinationDataSource.dummyDestinations
     }
 
     fun getOrderDestinationById(destinationId: Long): OrderDestination {
@@ -48,6 +53,12 @@ class DestinationRepository {
                     orderDestination.count != 0
                 }
             }
+    }
+
+    fun searchDestination(query: String): List<Destination>{
+        return FakeDestinationDataSource.dummyDestinations.filter {
+            it.title.contains(query, ignoreCase = true)
+        }
     }
 
     companion object {

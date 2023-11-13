@@ -21,7 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -69,6 +69,7 @@ fun DetailScreen(
                     data.destination.price,
                     data.count,
                     data.destination.description,
+                    data.destination.location,
                     onBackClick = navigateBack,
                     onAddToCart = { count ->
                         viewModel.addToCart(data.destination, count)
@@ -88,13 +89,14 @@ fun DetailContent(
     price: Int,
     count: Int,
     description: String,
+    location: String,
     onBackClick: () -> Unit,
     onAddToCart: (count: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
 
-    var totalPrice by rememberSaveable { mutableStateOf(0) }
-    var orderCount by rememberSaveable { mutableStateOf(count) }
+    var totalPrice by rememberSaveable { mutableIntStateOf(0) }
+    var orderCount by rememberSaveable { mutableIntStateOf(count) }
 
     Column(modifier = modifier) {
         Column(
@@ -143,6 +145,12 @@ fun DetailContent(
                     textAlign = TextAlign.Justify,
                     modifier = Modifier.padding(top = 32.dp)
                 )
+                Text(
+                    text = "📍$location",
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Justify,
+                    modifier = Modifier.padding(top = 32.dp)
+                )
             }
         }
         Spacer(modifier = Modifier.fillMaxWidth().height(4.dp).background(LightGray))
@@ -178,6 +186,7 @@ fun DetailContentPreview() {
             7500,
             1,
             "Gunung Bromo adalah salah satu gunung berapi aktif di Indonesia. Gunung ini terletak di Jawa Timur, lebih tepatnya berada di empat kabupaten, yakni Kabupaten Probolinggo, Pasuruan, Lumajang, dan Malang.",
+            "Jawa Timur",
             onBackClick = {},
             onAddToCart = {}
         )
